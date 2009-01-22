@@ -20,10 +20,6 @@
 					'value'		=> array($data['value'])
 				);
 			}
-			
-			if ($this->get('ordered') == 'yes') {
-				$data['value'] = array_reverse($data['value']);
-			}
 
 			foreach ($data['value'] as $index => $value) {
 				$attributes['handle'] = $data['handle'][$index];
@@ -100,10 +96,6 @@
 			if(!is_array($data) || empty($data)) return;
 			
 			if(is_array($data['value']) && !empty($data['value'])) $data['value'];
-			
-			if ($this->get('ordered') == 'yes') {
-			  $data['value'] = array_reverse($data['value']);
-			}
 			
 			$values = (count($data['value']) > 1) ? @implode(', ', $data['value']) : $data['value'];
 
