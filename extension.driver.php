@@ -19,15 +19,16 @@
 
 		public function install(){
 
-			return $this->_Parent->Database->query("CREATE TABLE `tbl_fields_enhancedtaglist` (
-		 	  `id` int(11) unsigned NOT NULL auto_increment,
-			  `field_id` int(11) unsigned NOT NULL,
-			  `validator` varchar(100) default NULL,
-        `pre_populate_source` varchar(255) default NULL,
-        `pre_populate_min` int(11) unsigned NOT NULL,
-        `ordered` enum('yes','no') NOT NULL default 'no',
-			  PRIMARY KEY  (`id`),
-			  KEY `field_id` (`field_id`)
+			return $this->_Parent->Database->query("CREATE TABLE 		
+				`tbl_fields_enhancedtaglist` (
+				`id` int(11) unsigned NOT NULL auto_increment,
+				`field_id` int(11) unsigned NOT NULL,
+				`validator` varchar(100) default NULL,
+				`pre_populate_source` varchar(255) default NULL,
+				`pre_populate_min` int(11) unsigned NOT NULL,
+				`ordered` enum('yes','no') NOT NULL default 'no',
+				PRIMARY KEY  (`id`),
+				KEY `field_id` (`field_id`)
 			) TYPE=MyISAM;");
 
 		}
