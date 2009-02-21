@@ -4,10 +4,9 @@
 	
 		public function about(){
 			return array('name' => 'Field: Enhanced Tag List',
-						 'version' => '1.0',
-						 'release-date' => '2008-12-14',
+						 'version' => '1.1',
+						 'release-date' => '2008-02-21',
 						 'author' => array('name' => 'craig zheng',
-										   'website' => 'http://mongrl.com',
 										   'email' => 'cz@mongrl.com')
 				 		);
 		}
@@ -16,6 +15,12 @@
 			$this->_Parent->Database->query("DROP TABLE `tbl_fields_enhancedtaglist`");
 		}
 
+		public function update($previousVersion){	
+			if(version_compare($previousVersion, '1.1', '<')){
+				$this->_Parent->Database->query("ALTER TABLE `tbl_fields_enhancedtaglist` ADD `delimiter` VARCHAR(5) NOT NULL DEFAULT ','");
+			}
+			return true;
+		}
 
 		public function install(){
 
@@ -27,6 +32,7 @@
 				`pre_populate_source` varchar(255) default NULL,
 				`pre_populate_min` int(11) unsigned NOT NULL,
 				`ordered` enum('yes','no') NOT NULL default 'no',
+				`delimiter` varchar(5) NOT NULL default ',',
 				PRIMARY KEY  (`id`),
 				KEY `field_id` (`field_id`)
 			) TYPE=MyISAM;");

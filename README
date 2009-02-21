@@ -1,16 +1,18 @@
 Enhanced Tag List Field
 ------------------------------------
 
-Version: 1.0
+Version: 1.1
 Author: craig zheng
-Build Date: 21st Jan 2009
-Requirements: Symphony 2
+Build Date: 21st Feb 2009
+Requirements: Symphony 2.0.2
 
-Based on Symphony's built-in tag list field, the enhanced tag list provides two additional (optional) features:
+Based on Symphony's built-in tag list field, the enhanced tag list provides three additional (optional) features:
 
   1) Suggestion threshold. A numerical value specifying the minimum number of times a tag must be used before it will appear in the suggestion list. Handy for keeping the interface tidier if you've got lots and lots of tags, but need only the most frequent ones in your suggestion list.
 
-  2) Ordering. Symphony's built-in tag list reorders tags on submission. Enhanced Tag List allows you the option of preserving the order in which you entered your tags, and provides an "order" attribute in the XML output. 
+  2) Ordering. Symphony's built-in tag list reorders tags on submission. Enhanced Tag List allows you the option of preserving the order in which you entered your tags, and provides an "order" attribute in the XML output.
+  
+  3) Custom delimiters. Allows you to specify an alternative delimiter of up to 5 characters. Useful if your tags need to be able to contain commas, for instance.
 
 [INSTALLATION]
 
@@ -26,3 +28,10 @@ Based on Symphony's built-in tag list field, the enhanced tag list provides two 
 Suggestion Threshold - Leave blank for no threshold. Otherwise enter any integer.
 
 Ordering - When adding the field to your section, check the "Preserve list order" box. Then simply enter tag list items in the desired order. You can reorder at any time by rearranging the input and saving the entry.
+
+Delimiters - Enter a delimiter of up to five characters (e.g. ";" "::" "+" etc). You can change your delimiter at any time for any field without having to reenter data.
+
+[CHANGELOG]
+
+1.1 - Added custom delimiters, along with some bugfixes
+1.0 - Initial Build
