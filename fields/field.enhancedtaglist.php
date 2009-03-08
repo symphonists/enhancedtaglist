@@ -38,7 +38,7 @@
 
 			$value = NULL;
 			if(isset($data['value'])){
-				$value = (is_array($data['value']) ? self::__tagArrayToString($data['value'], $this->get('delimiter'), $this->get('ordered') : $data['value']);
+				$value = (is_array($data['value']) ? self::__tagArrayToString($data['value'], $this->get('delimiter'), $this->get('ordered')) : $data['value']);
 			}
 			
 			$label = Widget::Label($this->get('label'));
