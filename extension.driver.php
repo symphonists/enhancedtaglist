@@ -3,25 +3,29 @@
 	Class extension_enhancedtaglist extends Extension{
 	
 		public function about(){
-			return array('name' => 'Field: Enhanced Tag List',
-						 'version' => '1.2',
-						 'release-date' => '2009-06-01',
-						 'author' => array('name' => 'craig zheng',
-										   'email' => 'cz@mongrl.com')
-				 		);
+			return array(
+				'name'			=> 'Field: Enhanced Tag List',
+				'version'		=> '1.3',
+				'release-date'	=> '2011-02-10',
+				'author'		=> array(
+					'name' => 'craig zheng',
+					'email' => 'craig@symphony-cms.com'
+				),
+				'description'	=>	'Taglist with enhanced features'
+			);
 		}
 		
 		public function uninstall(){
-			$this->_Parent->Database->query("DROP TABLE `tbl_fields_enhancedtaglist`");
+			Symphony::Database()->query("DROP TABLE `tbl_fields_enhancedtaglist`");
 		}
 
 		public function update($previousVersion){	
 			if(version_compare($previousVersion, '1.2', '<')){
-				$this->_Parent->Database->query("ALTER TABLE `tbl_fields_enhancedtaglist` 
+				Symphony::Database()->query("ALTER TABLE `tbl_fields_enhancedtaglist` 
 					ADD `external_source_url` varchar(255) default NULL,
 					ADD `external_source_path` varchar(255) default NULL");
 				if(version_compare($previousVersion, '1.1', '<')){
-					$this->_Parent->Database->query("ALTER TABLE `tbl_fields_enhancedtaglist` ADD `delimiter` VARCHAR(5) NOT NULL DEFAULT ','");
+					Symphony::Database()->query("ALTER TABLE `tbl_fields_enhancedtaglist` ADD `delimiter` VARCHAR(5) NOT NULL DEFAULT ','");
 				}
 			}
 			return true;
@@ -29,7 +33,7 @@
 
 		public function install(){
 
-			return $this->_Parent->Database->query("CREATE TABLE 		
+			return Symphony::Database()->query("CREATE TABLE 		
 				`tbl_fields_enhancedtaglist` (
 				`id` int(11) unsigned NOT NULL auto_increment,
 				`field_id` int(11) unsigned NOT NULL,

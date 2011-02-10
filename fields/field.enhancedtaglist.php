@@ -17,7 +17,7 @@
 		
 		function createTable(){
 			
-			return $this->_engine->Database->query(
+			return Symphony::Database()->query(
 				"CREATE TABLE IF NOT EXISTS `tbl_entries_data_" . $this->get('id') . "` (
 				  `id` int(11) unsigned NOT NULL auto_increment,
 				  `entry_id` int(11) unsigned NOT NULL,
@@ -51,7 +51,7 @@
 					$values = array_merge($values, $terms);
 				}
 				else {
-					$result = $this->_engine->Database->fetchCol('value', sprintf($sql, ($item == 'existing' ? $this->get('id') : $item)));
+					$result = Symphony::Database()->fetchCol('value', sprintf($sql, ($item == 'existing' ? $this->get('id') : $item)));
 					if(!is_array($result) || empty($result)) continue;	
 					$values = array_merge($values, $result);
 				}
@@ -74,8 +74,6 @@
 		function displaySettingsPanel(&$wrapper, $errors=NULL){
 			
 			Field::displaySettingsPanel($wrapper, $errors);
-
-			$div = new XMLElement('div', NULL, array('class' => 'group'));
 			
 			// build suggestion list
 			$label = Widget::Label(__('Suggestion List'));
@@ -106,48 +104,67 @@
 			}
 			
 			$label->appendChild(Widget::Select('fields['.$this->get('sortorder').'][pre_populate_source][]', $options, array('multiple' => 'multiple')));
-			$div->appendChild($label);
+			$wrapper->appendChild($label);
 			
-			$label = Widget::Label('Tag List Options');
-			$div->appendChild($label);
+			// Validation
+			$this->buildValidationSelect($wrapper, $this->get('validator'), 'fields['.$this->get('sortorder').'][validator]');
+			
+			$fieldset = new XMLElement('fieldset');
+			$legend = new XMLElement('legend', __('Additional Options'));
+			$fieldset->appendChild($legend);
+			
+			$div = new XMLElement('div', NULL, array('class' => 'group triple'));
 			
 			// Suggestion threshold
-			$label = Widget::Label();
+			$label = Widget::Label(__('Suggestion Threshold'));
 			$input = Widget::Input('fields['.$this->get('sortorder').'][pre_populate_min]',($this->get('pre_populate_min') ? $this->get('pre_populate_min') : '' ));
-			$input->setAttribute('size', '3');
-			$label->setValue(__('Only suggest a tag if it has been used at least %s times', array($input->generate())));
+			$label->appendChild($input);
 			$div->appendChild($label);
 			
 			// Custom delimiter
-			$label = Widget::Label();
+			$label = Widget::Label(__('Tag Delimiter'));
 			$input = Widget::Input('fields['.$this->get('sortorder').'][delimiter]', ($this->get('delimiter') ? $this->get('delimiter') : ',' ));
-			$input->setAttribute('size', '5');
-			$label->setValue(__('Use %s as a delimiter to separate tags', array($input->generate())));
+			$label->appendChild($input);
 			$div->appendChild($label);
 			
 			// Preserve order option
-			$label = Widget::Label();
-			$input = Widget::Input('fields['.$this->get('sortorder').'][ordered]', 'yes', 'checkbox');
-			if($this->get('ordered') == 'yes') $input->setAttribute('checked', 'checked');     
-			$label->setValue($input->generate() . 'Preserve list order');
+			$label = Widget::Label(__('Tag Ordering'));
+			$options = array(
+				array(
+					'no',
+					($this->get('ordered') == 'no' ? TRUE : FALSE),
+					__('Alphabetical')
+				),
+				array(
+					'yes',
+					($this->get('ordered') == 'yes' ? TRUE : FALSE),
+					__('Order Entered')
+				)
+			);
+			
+			$select = Widget::Select('fields['.$this->get('sortorder').'][ordered]', $options);   
+			$label->appendChild($select);
 			$div->appendChild($label);
-			$wrapper->appendChild($div);
+			
+			$fieldset->appendChild($div);
+			$wrapper->appendChild($fieldset);
 			
 			// External Suggestions
+			$fieldset = new XMLElement('fieldset');
+			$legend = new XMLElement('legend', __('External XML Suggestions'));
+			$fieldset->appendChild($legend);
 			$div = new XMLElement('div', NULL, array('class' => 'group'));
-			$label = Widget::Label('External Source URL <i>Optional</i>');
+			$label = Widget::Label(__('Source URL') . '<i>Optional</i>');
 			$input = Widget::Input('fields['.$this->get('sortorder').'][external_source_url]', ($this->get('external_source_url') ? $this->get('external_source_url') : ''));
 			$label->appendChild($input);
 			$div->appendChild($label);
 			
-			$label = Widget::Label('External Source XPath <i>Optional</i>');
+			$label = Widget::Label(__('Options XPath') . '<i>Optional</i>');
 			$input = Widget::Input('fields['.$this->get('sortorder').'][external_source_path]', ($this->get('external_source_path') ? $this->get('external_source_path') : ''));
 			$label->appendChild($input);
 			$div->appendChild($label);
-			$wrapper->appendChild($div);
-			
-			// Validation
-			$this->buildValidationSelect($wrapper, $this->get('validator'), 'fields['.$this->get('sortorder').'][validator]');
+			$fieldset->appendChild($div);
+			$wrapper->appendChild($fieldset);
 			
 			$this->appendShowColumnCheckbox($wrapper);
 						
@@ -172,7 +189,7 @@
 			$fields['external_source_url'] = ($this->get('external_source_url') ? $this->get('external_source_url') : NULL );
 			$fields['external_source_path'] = ($this->get('external_source_path') ? $this->get('external_source_path') : NULL );
 					
-			$this->_engine->Database->query("
+			Symphony::Database()->query("
 				DELETE FROM
 				`tbl_fields_enhancedtaglist`
 				WHERE
@@ -180,7 +197,7 @@
 				LIMIT 1
 			");
       
-			return $this->_engine->Database->insert($fields, 'tbl_fields_enhancedtaglist');
+			return Symphony::Database()->insert($fields, 'tbl_fields_enhancedtaglist');
 					
 		}
 		

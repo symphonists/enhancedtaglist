@@ -1,46 +1,41 @@
-Enhanced Tag List Field
-------------------------------------
+# Enhanced Tag List Field
 
-	Version: 1.2
-	Author: craig zheng
-	Build Date: 1st June 2009
-	Requirements: Symphony 2.0.2
+- Version: 1.3
+- Author: craig zheng
+- Build Date: 10th February 2011
+- Requirements: Symphony 2.0.2
 	
+## Overview
 
 Based on Symphony's built-in tag list field, the enhanced tag list provides four additional (optional) features:
 
-	1. Suggestion threshold. A numerical value specifying the minimum number of times a tag must be used before it will appear in the suggestion list. Handy for keeping the interface tidier if you've got lots and lots of tags, but need only the most frequent ones in your suggestion list.
+1. Suggestion threshold. A numerical value specifying the minimum number of times a tag must be used before it will appear in the suggestion list. Handy for keeping the interface tidier if you've got lots and lots of tags, but need only the most frequent ones in your suggestion list.
 
-	2. Ordering. Symphony's built-in tag list reorders tags on submission. Enhanced Tag List allows you the option of preserving the order in which you entered your tags, and provides an "order" attribute in the XML output.
+2. Ordering. Symphony's built-in tag list reorders tags on submission. Enhanced Tag List allows you the option of preserving the order in which you entered your tags, and provides an "order" attribute in the XML output.
   
-	3. Custom delimiters. Allows you to specify an alternative delimiter of up to 5 characters. Useful if your tags need to be able to contain commas, for instance.
+3. Custom delimiters. Allows you to specify an alternative delimiter of up to 5 characters. Useful if your tags need to be able to contain commas, for instance.
   
-	4. *NEW* Suggestions from external XML. 
+4. Suggestions from external XML. 
 
+## Installation
 
-[INSTALLATION]
+1. Upload the 'enhancedtaglist' folder in this archive to your Symphony 'extensions' folder.
 
-	Step 1. Upload the 'enhancedtaglist' folder in this archive to your Symphony 'extensions' folder.
+2. Enable it by selecting the "Field: Enhanced Tag List", choose Enable from the with-selected menu, then click Apply. You can now add the "Enhanced Tag List" field to your sections.
 
-	Step 2. Enable it by selecting the "Field: Enhanced Tag List", choose Enable from the with-selected menu, then click Apply. You can now add the "Enhanced Tag List" field to your sections.
+## Usage
 
+1. Suggestion Threshold - Leave blank for no threshold. Otherwise enter any integer.
 
-[USAGE]
+2. Ordering - When adding the field to your section, check the "Preserve list order" box. Then simply enter tag list items in the desired order. You can reorder at any time by rearranging the input and saving the entry.
 
-	1. Suggestion Threshold - Leave blank for no threshold. Otherwise enter any integer.
+3. Delimiters - Enter a delimiter of up to five characters (e.g. ";" "::" "+" etc). You can change your delimiter at any time for any field without having to reenter data.
 
-	2. Ordering - When adding the field to your section, check the "Preserve list order" box. Then simply enter tag list items in the desired order. You can reorder at any time by rearranging the input and saving the entry.
+4. External XML Suggestions - Provide URL of external XML source, and XPath for selecting suggestion elements.
 
-	3. Delimiters - Enter a delimiter of up to five characters (e.g. ";" "::" "+" etc). You can change your delimiter at any time for any field without having to reenter data.
+## Changelog
 
-	4. External XML Suggestions - Provide URL of external XML source, and XPath for selecting suggestion elements.
-
-[CHANGELOG]
-
-	1.2 - Added external suggestions, code reorganization.
-	1.1 - Added custom delimiters, along with some bugfixes
-	1.0 - Initial Build
-
-[TODO]
-
-	- Clean up field settings panel.
+- **1.3** - Update for Symphony 2.2
+- **1.2** - Added external suggestions, code reorganization.
+- **1.1** - Added custom delimiters, along with some bugfixes
+- **1.0** - Initial Build
