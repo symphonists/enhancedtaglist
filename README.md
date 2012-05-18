@@ -1,9 +1,4 @@
 # Enhanced Tag List Field
-
-- Version: 1.3
-- Author: craig zheng
-- Build Date: 10th February 2011
-- Requirements: Symphony 2.0.2
 	
 ## Overview
 
@@ -32,10 +27,3 @@ Based on Symphony's built-in tag list field, the enhanced tag list provides four
 3. Delimiters - Enter a delimiter of up to five characters (e.g. ";" "::" "+" etc). You can change your delimiter at any time for any field without having to reenter data.
 
 4. External XML Suggestions - Provide URL of external XML source, and XPath for selecting suggestion elements.
-
-## Changelog
-
-- **1.3** - Update for Symphony 2.2
-- **1.2** - Added external suggestions, code reorganization.
-- **1.1** - Added custom delimiters, along with some bugfixes
-- **1.0** - Initial Build
