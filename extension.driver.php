@@ -1,29 +1,17 @@
 <?php
 
 	Class extension_enhancedtaglist extends Extension{
-	
-		public function about(){
-			return array(
-				'name'			=> 'Field: Enhanced Tag List',
-				'version'		=> '1.3',
-				'release-date'	=> '2011-02-10',
-				'author'		=> array(
-					'name' => 'craig zheng',
-					'email' => 'craig@symphony-cms.com'
-				),
-				'description'	=>	'Taglist with enhanced features'
-			);
-		}
-		
+
 		public function uninstall(){
-			Symphony::Database()->query("DROP TABLE `tbl_fields_enhancedtaglist`");
+			return Symphony::Database()->query("DROP TABLE `tbl_fields_enhancedtaglist`");
 		}
 
-		public function update($previousVersion){	
+		public function update($previousVersion){
 			if(version_compare($previousVersion, '1.2', '<')){
-				Symphony::Database()->query("ALTER TABLE `tbl_fields_enhancedtaglist` 
+				Symphony::Database()->query("ALTER TABLE `tbl_fields_enhancedtaglist`
 					ADD `external_source_url` varchar(255) default NULL,
 					ADD `external_source_path` varchar(255) default NULL");
+
 				if(version_compare($previousVersion, '1.1', '<')){
 					Symphony::Database()->query("ALTER TABLE `tbl_fields_enhancedtaglist` ADD `delimiter` VARCHAR(5) NOT NULL DEFAULT ','");
 				}
@@ -32,8 +20,7 @@
 		}
 
 		public function install(){
-
-			return Symphony::Database()->query("CREATE TABLE 		
+			return Symphony::Database()->query("CREATE TABLE
 				`tbl_fields_enhancedtaglist` (
 				`id` int(11) unsigned NOT NULL auto_increment,
 				`field_id` int(11) unsigned NOT NULL,
@@ -46,8 +33,7 @@
 				`delimiter` varchar(5) NOT NULL default ',',
 				PRIMARY KEY  (`id`),
 				KEY `field_id` (`field_id`)
-			) TYPE=MyISAM;");
-
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 		}
-			
+
 	}
