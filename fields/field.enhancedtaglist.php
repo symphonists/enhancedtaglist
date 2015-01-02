@@ -34,6 +34,10 @@
 	-------------------------------------------------------------------------*/
 
 		public function findAllTags(){
+			return $this->getToggleStates();
+		}
+
+		public function getToggleStates() {
 			if(!is_array($this->get('pre_populate_source'))) return;
 
 			$values = array();
@@ -200,11 +204,12 @@
 
 			if($this->get('pre_populate_source') != NULL){
 
-				$existing_tags = $this->findAllTags();
+				$existing_tags = $this->getToggleStates();
 
 				if(is_array($existing_tags) && !empty($existing_tags)){
 					$taglist = new XMLElement('ul');
 					$taglist->setAttribute('class', 'tags');
+					$taglist->setAttribute('data-interactive', 'data-interactive');
 
 					foreach($existing_tags as $tag) $taglist->appendChild(new XMLElement('li', $tag));
 
