@@ -14,7 +14,7 @@ Based on Symphony's built-in tag list field, the enhanced tag list provides four
 
 ## Installation
 
-1. Upload the `/enhancedtaglist` folderto your Symphony `/extensions` folder.
+1. Upload the `/enhancedtaglist` folder to your Symphony `/extensions` folder.
 
 2. Enable it by selecting the "Field: Enhanced Tag List", choose Enable from the with-selected menu, then click Apply. You can now add the "Enhanced Tag List" field to your sections.
 
