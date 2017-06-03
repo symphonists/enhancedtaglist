@@ -26,7 +26,7 @@
 				`field_id` int(11) unsigned NOT NULL,
 				`validator` varchar(100) default NULL,
 				`pre_populate_source` varchar(255) default NULL,
-				`pre_populate_min` int(11) unsigned NOT NULL,
+				`pre_populate_min` int(11) unsigned default 0,
 				`external_source_url` varchar(255) default NULL,
 				`external_source_path` varchar(255) default NULL,
 				`ordered` enum('yes','no') NOT NULL default 'no',
