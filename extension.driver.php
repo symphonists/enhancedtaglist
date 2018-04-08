@@ -6,7 +6,7 @@
 			return Symphony::Database()->query("DROP TABLE `tbl_fields_enhancedtaglist`");
 		}
 
-		public function update($previousVersion){
+		public function update($previousVersion = false){
 			if(version_compare($previousVersion, '1.2', '<')){
 				Symphony::Database()->query("ALTER TABLE `tbl_fields_enhancedtaglist`
 					ADD `external_source_url` varchar(255) default NULL,

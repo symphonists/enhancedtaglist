@@ -16,6 +16,9 @@
         </author>
 	</authors>
 	<releases>
+        <release version="1.4.2" date="2018-04-08" min="2.3">
+            - PHP7 compatibility
+        </release>
     	<release version="1.4.1" date="2017-06-03" min="2.3">
 			- Fix error when saving Section that has an Enhanced Taglist field due to null value for `pre_populate_min`
 		</release>
